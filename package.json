@@ -50,7 +50,8 @@
   "dependencies": {
     "@brightspace-ui/core": "^1",
     "@webcomponents/webcomponentsjs": "^2",
-    "highcharts": "^8.2.2",
+    "d3": "^6.2.0",
+    "d3-hierarchy": "^2.0.0",
     "lit-element": "^2"
   }
 }
