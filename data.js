@@ -1,120 +1,41 @@
-export function getOrgData() {
+const dataEndpoint = '/d2l/api/ap/unstable/orgStructureGraph/data';
+
+export async function fetchData() {
+    const url = new URL(dataEndpoint, window.location.origin);
+    const response = await fetch(url.toString());
+    return await response.json();
+}
+
+export async function getMockData() {
     return {
         orgUnits: [
-            {
-                id: 6606,
-                name: 'Org',
-                type: 'Organization'
-            },
-            {
-                id: 1,
-                name: 'Faculty 1',
-                type: 'Faculty'
-            },
-            {
-                id: 2,
-                name: 'Faculty 2',
-                type: 'Faculty'
-            },
-            {
-                id: 11,
-                name: 'Department 1-1',
-                type: 'Department'
-            },
-            {
-                id: 12,
-                name: 'Department 1-2',
-                type: 'Department'
-            },
-            {
-                id: 21,
-                name: 'Department 2-1',
-                type: 'Department'
-            },
-            // {
-            //     id: 111,
-            //     name: 'Course 11-1',
-            //     type: 'Course'
-            // },
-            // {
-            //     id: 112,
-            //     name: 'Course 11-2',
-            //     type: 'Course'
-            // },
-            // {
-            //     id: 1000,
-            //     name: 'Semester 1',
-            //     type: 'Semester'
-            // },
-            // {
-            //     id: 2000,
-            //     name: 'Semester 2',
-            //     type: 'Semester'
-            // },
-            // {
-            //     id: 1111,
-            //     name: 'Course 11-1 Semester 1',
-            //     type: 'Course Offering'
-            // },
-            // {
-            //     id: 1112,
-            //     name: 'Course 11-2 Semester 1',
-            //     type: 'Course Offering'
-            // },
+            [6606, 'Org', 1, 'Organization'],
+            [1, 'Faculty 1', 2, 'Faculty'],
+            [2, 'Faculty 2', 2, 'Faculty'],
+            [11, 'Department 1-1', 3, 'Department'],
+            [12, 'Department 1-2', 3, 'Department'],
+            [21, 'Department 2-1', 3, 'Department'],
+            [111, 'Course 11-1', 4, 'Course'],
+            [112, 'Course 11-2', 4, 'Course'],
+            [1000, 'Semester 1', 5, 'Semester'],
+            [2000, 'Semester 2', 5, 'Semester'],
+            [1111, 'Course 11-1 Semester 1', 6, 'Course Offering'],
+            [1112, 'Course 11-2 Semester 1', 6, 'Course Offering'],
         ],
-        structure: [
-            {
-                child: 1,
-                parent: 6606
-            },
-            {
-                child: 2,
-                parent: 6606
-            },
-            {
-                child: 11,
-                parent: 1
-            },
-            {
-                child: 12,
-                parent: 1
-            },
-            {
-                child: 21,
-                parent: 2
-            },
-            // {
-            //     child: 111,
-            //     parent: 11
-            // },
-            // {
-            //     child: 112,
-            //     parent: 11
-            // },
-            // {
-            //     child: 1000,
-            //     parent: 6606
-            // },
-            // {
-            //     child: 2000,
-            //     parent: 6606
-            // },
-            // {
-            //     child: 1111,
-            //     parent: 111
-            // },
-            // {
-            //     child: 1111,
-            //     parent: 1000
-            // },
-            // {
-            //     child: 1112,
-            //     parent: 112
-            // },
-            // {
-            //     child: 1112,
-            //     parent: 1000
-            // },
+        orgUnitParents: [
+            [1, 6606],
+            [2, 6606],
+            [11, 1],
+            [12, 1],
+            [21, 2],
+            [111, 11],
+            [112, 11],
+            [1000, 6606],
+            [2000, 6606],
+            [1111, 111],
+            // [1111, 1000],
+            [1112, 112],
+            // [1112, 1000]
         ]
     };
 }
