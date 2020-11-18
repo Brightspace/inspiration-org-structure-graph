@@ -21,3 +21,16 @@ or if that branch has been trimmed check the
   * Follow the additional steps in the BSI readme to hook it up to your local LMS
 * Run `npm install` in this folder
 * For "live" changes, `npm link` this folder to your local BSI
+
+### TODOs
+* Add filtering (similar to [insights-engagement-dashboard](https://github.com/Brightspace/insights-engagement-dashboard))
+  * By search
+  * By orgUnitId
+  * By semesterId
+* Ability to click to expand / shrink nodes
+* Ability to resize either of the windows, or put them in separate tabs
+* Bring it in line with daylight visual style
+* Add stats (e.g. number of enrollments for each OU)
+* Second page which shows more detailed stats when clicking on an OU (e.g. breakdown by role)
+* Accessibility
+* Localization
