@@ -1,5 +1,6 @@
-import { css, html, LitElement} from 'lit-element';
-import {fetchData, fetchMockData, ORG_UNIT } from './data';
+import { css, html, LitElement } from 'lit-element';
+import { fetchData, fetchMockData, ORG_UNIT } from './data';
+import { heading3Styles } from "@brightspace-ui/core/components/typography/styles";
 
 import * as d3 from 'd3';
 
@@ -16,12 +17,12 @@ function arrayToNode(arr) {
 class OrgStructureGraph extends LitElement {
 
     static get styles() {
-        return [css`
+        return [heading3Styles, css`
             .graph-container {
                 height: 92vh;
                 width: 49.5%;
                 display: inline-block;
-                white-space: no-wrap;
+                white-space: nowrap;
                 overflow: scroll;
             }
             
@@ -38,7 +39,11 @@ class OrgStructureGraph extends LitElement {
         this._semesterHierarchy = null;
 
         // TODO: make "demo" an attribute
-        Promise.all([fetchData(), this.updateComplete]).then(([data]) => {
+        Promise.all([
+            // fetchData(),
+            fetchMockData(),
+            this.updateComplete
+        ]).then(([data]) => {
             this._rawData = data;
             this._processData(data);
             this._createGraph();
@@ -113,8 +118,8 @@ class OrgStructureGraph extends LitElement {
     _hierarchyToSvg(hierarchy, width) {
 
         // NB: x is vertical axis; y is horizontal axis for this example (since the graph is "inverted")
-        const dx = 15; // vertical distance between each node
-        const dy = width / (hierarchy.height + 1); // horizontal distance between each "level"
+        const dx = 30; // vertical distance between each node
+        const dy = width / (hierarchy.height + 1.5); // horizontal distance between each "level"
 
         const root = d3.tree().nodeSize([dx, dy])(hierarchy);
 
@@ -132,7 +137,7 @@ class OrgStructureGraph extends LitElement {
 
         const g = svg.append("g")
             .attr("font-family", "sans-serif")
-            .attr("font-size", 10)
+            .attr("font-size", 16)
             .attr("transform", `translate(${dy / 3},${dx - x0})`);  // dy/3 gives some left padding
                                                                     // dx - x0 is exactly halfway down the page
         // paths between nodes
@@ -176,10 +181,10 @@ class OrgStructureGraph extends LitElement {
     render() {
         return html`
             <div id="org-unit-graph-container" class="graph-container">
-                <h3 class="graph-title">Org Unit Structure</h3>
+                <h3 class="d2l-heading-3 graph-title">Org Unit Structure</h3>
             </div>
             <div id="semester-graph-container" class="graph-container">
-                <h3 class="graph-title">Semester Structure</h3>
+                <h3 class="d2l-heading-3 graph-title">Semester Structure</h3>
             </div>
         `;
     }
